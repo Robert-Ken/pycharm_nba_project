@@ -4,11 +4,10 @@
 import pandas as pd
 df = pd.read_csv(r"C:\Users\Lessa\1. UCD-NBA Project\all_seasons.csv")
 
-#Import Numpy, Matplotlib and Seaborn as well.  If these don't work, then click on 'Terminal' and type>pip install 'insert
-# the word Numpy or Matplotlib or Seaborn' and hit return:
-#import numpy as np
-#import matplotlib.pyplot as plt
-#import seaborn as sns
+#Import Numpy, Matplotlib and Seaborn:
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 #ANALYZING DATA
 #To check the first 5 rows and also the size of the dataset:
@@ -161,11 +160,32 @@ df = pd.read_csv(r"C:\Users\Lessa\1. UCD-NBA Project\all_seasons.csv")
 #10550  Kawhi Leonard  26.6  2018-19
 #11070  Kawhi Leonard  26.9  2019-20
 #
+#To check Kevin Durant point averages for each season:
+#print(df.loc[df.player_name == 'Kevin Durant', ['player_name', 'pts', 'season']])
+#Returned
+#       player_name   pts   season
+#5164   Kevin Durant  20.3  2007-08
+#5411   Kevin Durant  25.3  2008-09
+#6163   Kevin Durant  30.1  2009-10
+#6264   Kevin Durant  27.7  2010-11
+#7024   Kevin Durant  28.0  2011-12
+#7459   Kevin Durant  28.1  2012-13
+#7972   Kevin Durant  32.0  2013-14
+#8338   Kevin Durant  25.4  2014-15
+#8805   Kevin Durant  28.2  2015-16
+#9192   Kevin Durant  25.1  2016-17
+#10094  Kevin Durant  26.4  2017-18
+#10494  Kevin Durant  26.0  2018-19
+#
+#Process finished with exit code 0
+
+
 #To check the average assists per season for John Stockton:
 #print(df.loc[df.player_name == 'John Stockton'].ast.mean())
 #Returned
 #5.722222222222222
 #
+#SORTING
 #To check all the players from Greece
 #print(df.query("country == 'Greece'"))
 #Returned
@@ -197,6 +217,7 @@ df = pd.read_csv(r"C:\Users\Lessa\1. UCD-NBA Project\all_seasons.csv")
 #[24 rows x 22 columns]
 #Process finished with exit code 0
 #
+#GROUPING
 #Group the dataset by player then season in ascending order:
 #df_grouped = df.groupby(['player_name', 'season'])
 #print(df_grouped.first())
@@ -228,11 +249,12 @@ df = pd.read_csv(r"C:\Users\Lessa\1. UCD-NBA Project\all_seasons.csv")
 #plt.show()
 #Returned - graph saved to LAN folder
 #
-#Plot comparison between Lebron James and Kawhi Leonard average points per season:
+#Plot comparison between Lebron James v Kawhi Leonard v Kevin Durant average points per season:
 #df[df['player_name'] == "LeBron James"] ["pts"] [(df["season"]>= "2011-12")].hist(alpha=0.7)
 #df[df['player_name'] == "Kawhi Leonard"] ["pts"] [(df["season"]>= "2011-12")].hist(alpha=0.5)
-#plt.title("Lebron James v Kawhi Leonard Average Points Per Season")
-#plt.legend(["LBJ", "KL"])
+#df[df['player_name'] == "Kevin Durant"] ["pts"] [(df["season"]>= "2011-12")].hist(alpha=0.4)
+#plt.title("Lebron James v Kawhi Leonard v Kevin Durant Average Points Per Season")
+#plt.legend(["LBJ", "KL", "KD"])
 #plt.ylabel('Points Per Game')
 #plt.xlabel('Season')
 #plt.xticks(rotation=90)
@@ -240,9 +262,16 @@ df = pd.read_csv(r"C:\Users\Lessa\1. UCD-NBA Project\all_seasons.csv")
 #Returned - graph saved to LAN folder
 #
 #Plot comparison of all teams on average - points, rebounds and assists:
-type = ['pts', 'reb', 'ast']
-all_teams = df.groupby('team_abbreviation')[type].mean()
-print(all_teams)
+#type = ['pts', 'reb', 'ast']
+#all_teams = df.groupby('team_abbreviation')[type].mean()
+#print(all_teams)
 #
+#Plot comparison of all players on average - points, rebounds and assists:
+#type = ['pts', 'reb', 'ast']
+#all_players = df.groupby('player_name')[type].mean()
+#print(all_players)
+
+
+
 #To check the first 4 rows and columns 6 to 9:
 #print(df.iloc[0:4, 6:10])
