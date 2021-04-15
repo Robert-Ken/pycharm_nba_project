@@ -270,8 +270,10 @@ import seaborn as sns
 #type = ['pts', 'reb', 'ast']
 #all_players = df.groupby('player_name')[type].mean()
 #print(all_players)
-
-
-
-#To check the first 4 rows and columns 6 to 9:
-#print(df.iloc[0:4, 6:10])
+#
+#To sort Players by tallest to smallest:
+#print(df.sort_values("player_height", ascending= False))
+#
+#type = ['player_height']
+#players = (df.groupby("player_name")[type].mean())
+#print(players)
