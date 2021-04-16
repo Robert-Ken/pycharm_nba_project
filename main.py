@@ -143,6 +143,7 @@ import seaborn as sns
 #
 #To check statistical overview of data:
 #print(df.describe())
+#Returned
 #        Unnamed: 0           age  ...        ts_pct       ast_pct
 #count  11145.000000  11145.000000  ...  11145.000000  11145.000000
 #mean    5572.000000     27.168686  ...      0.508099      0.131078
@@ -156,8 +157,35 @@ import seaborn as sns
 #[8 rows x 14 columns]
 #Process finished with exit code 0
 #
+#To check each player's median points:
+#players_avg_pts = df.groupby(['player_name'])
+#print(players_avg_pts['pts'].median())
+#Returned
+#player_name
+#A.C. Green             5.0
+#A.J. Bramlett          1.0
+#A.J. Guyton            5.4
+#AJ Hammons             2.2
+#AJ Price               5.8
+#                      ...
+#Zion Williamson       23.6
+#Zoran Dragic           1.8
+#Zoran Planinic         3.4
+#Zydrunas Ilgauskas    13.9
+#Zylan Cheatham         1.3
+#Name: pts, Length: 2235, dtype: float64
+#Process finished with exit code 0
+#
+#To check the median points for a specific player:
+#players_avg_pts = df.groupby(['player_name'])
+#print(players_avg_pts['pts'].median().loc['Seth Curry'])
+#Returned
+#7.35
+#
+#
 #To check Lebron James point averages for each season:
-#print(df.loc[df.player_name == 'LeBron James', ['player_name', 'pts', 'season']])
+#lbj_avg_pts = df.loc[df.player_name == 'LeBron James', ['player_name', 'pts', 'season']]
+#print(lbj_avg_pts)
 #Returned
 #      player_name   pts   season
 #3120   LeBron James  20.9  2003-04
@@ -179,7 +207,8 @@ import seaborn as sns
 #11042  LeBron James  25.6  2019-20
 #
 #To check Kawhi Leonard point averages for each season:
-#print(df.loc[df.player_name == 'Kawhi Leonard', ['player_name', 'pts', 'season']])
+#kl_avg_pts = df.loc[df.player_name == 'Kawhi Leonard', ['player_name', 'pts', 'season']]
+#print(kl_avg_pts)
 #Returned
 #         player_name   pts   season
 #7016   Kawhi Leonard   7.9  2011-12
@@ -193,7 +222,9 @@ import seaborn as sns
 #11070  Kawhi Leonard  26.9  2019-20
 #
 #To check Kevin Durant point averages for each season:
-#print(df.loc[df.player_name == 'Kevin Durant', ['player_name', 'pts', 'season']])
+#kd_avg_pts = df.loc[df.player_name == 'Kevin Durant', ['player_name', 'pts', 'season']]
+#print(kd_avg_pts)
+#
 #Returned
 #       player_name   pts   season
 #5164   Kevin Durant  20.3  2007-08
@@ -212,13 +243,43 @@ import seaborn as sns
 #Process finished with exit code 0
 #
 #SORTING
-#To sort by NBA Team and then colleges:
-#print(df.sort_values(by=['team_abbreviation', 'college'], ascending=[True, True], inplace= True))
-#print(df[['team_abbreviation', 'college']].head(40))
+#To sort by NBA Team and then colleges for the first 10 rows:
+#print(df[['team_abbreviation', 'college']].head(10))
+#Returned
+#  team_abbreviation                      college
+#0               CHI  Southeastern Oklahoma State
+#1               LAC                      Florida
+#2               TOR                Detroit Mercy
+#3               DAL                         UCLA
+#4               MIA                    Villanova
+#5               HOU                     Illinois
+#6               LAL                       Temple
+#7               LAL                      Clemson
+#8               ATL                   Washington
+#9               MIL                      Memphis
+#Process finished with exit code 0
 
+#To sort on Team and then points in ascending order:
+#print(df.sort_values(by=['team_abbreviation', 'pts'], ascending=[True, True]))
+#Returned
+#Unnamed: 0      player_name team_abbreviation  ...  ts_pct  ast_pct   season
+#33             33   Derrick Alston               ATL  ...   0.000    0.000  1996-97
+#156           156   Anthony Miller               ATL  ...   0.000    0.000  1996-97
+#1862         1862       Ira Bowman               ATL  ...   0.000    0.636  2000-01
+#1912         1912       Andy Panko               ATL  ...   0.000    0.000  2000-01
+#2600         2600  Dickey Simpkins               ATL  ...   0.000    0.500  2001-02
+#...           ...              ...               ...  ...     ...      ...      ...
+#3953         3953   Gilbert Arenas               WAS  ...   0.565    0.224  2004-05
+#10235       10235     Bradley Beal               WAS  ...   0.581    0.233  2018-19
+#4451         4451   Gilbert Arenas               WAS  ...   0.565    0.257  2006-07
+#4343         4343   Gilbert Arenas               WAS  ...   0.581    0.261  2005-06
+#10766       10766     Bradley Beal               WAS  ...   0.580    0.282  2019-20
+#[11145 rows x 22 columns]
+#Process finished with exit code 0
 
-#To check all the players from Greece
-#print(df.query("country == 'Greece'"))
+#To check all the players from Greece:
+#players_greece = df.query("country == 'Greece'")
+#print(players_greece)
 #Returned
 #      Unnamed: 0             player_name  ... ast_pct   season
 #1840         1840         Jake Tsakalidis  ...   0.033  2000-01
@@ -249,12 +310,40 @@ import seaborn as sns
 #Process finished with exit code 0
 #
 #To check which colleges have the largest number of players:
-#df_college_number = df["college"].value_counts()
-#print(df_college_number)
+#college_number_players = df["college"].value_counts()
+#print(college_number_players)
+#Returned
+#None                              1684
+#Kentucky                           360
+#Duke                               331
+#North Carolina                     318
+#UCLA                               280
+#                                  ...
+#Stony Brook, N.Y.                    1
+#Augusta State                        1
+#Northwestern State                   1
+#Indian Hills Community College       1
+#Lebanon Valley                       1
+#Name: college, Length: 316, dtype: int64
+#Process finished with exit code 0
 #
-#To check which teams have the largest number of players:
+#To sort the top 10 teams which have the largest number of players:
 #df_teams_number = df["team_abbreviation"].value_counts()
-#print(df_teams_number)
+#print((df_teams_number).head(10))
+#
+#Returned
+#CLE    390
+#TOR    390
+#LAC    389
+#MIA    387
+#DAL    384
+#ATL    383
+#PHI    380
+#WAS    379
+#HOU    378
+#SAS    377
+#Name: team_abbreviation, dtype: int64
+#Process finished with exit code 0
 #
 #
 #GROUPING and INDEXING
@@ -332,8 +421,9 @@ import seaborn as sns
 #Process finished with exit code 0
 #
 #To index on college by grouping colleges to show the percentage of players for a specific team:
-teams_college_grp = teams_grp = df.groupby(['team_abbreviation'])
-print(teams_college_grp['college'].value_counts(normalize=True).loc['LAL'])
+#teams_college_grp = teams_grp = df.groupby(['team_abbreviation'])
+#print(teams_college_grp['college'].value_counts(normalize=True).loc['LAL'])
+#plt.plot()
 #Returned
 #college
 #None                    0.191375
@@ -364,7 +454,7 @@ print(teams_college_grp['college'].value_counts(normalize=True).loc['LAL'])
 #
 #
 #Plot Lebron James average points per season:
-#lebron_avg_pts = df.loc[df.player_name == 'LeBron James', ['pts','season']]
+#lebron_avg_pts = df.loc[df.player_name == 'LeBron James', ['season','pts']]
 #plt.plot(lebron_avg_pts["season"], lebron_avg_pts["pts"])
 #plt.ylabel('Points Per Game')
 #plt.xticks(rotation=90)
@@ -387,25 +477,161 @@ print(teams_college_grp['college'].value_counts(normalize=True).loc['LAL'])
 #
 #Plot comparison of all teams on average - points, rebounds and assists:
 #type = ['pts', 'reb', 'ast']
-#all_teams = df.groupby('team_abbreviation')[type].mean()
-#print(all_teams)
+#all_teams_pts_reb_ast = df.groupby('team_abbreviation')[type].mean()
+#all_teams_pts_reb_ast.sort_values(by=['pts', 'reb', 'ast'], ascending= [False, True, True], inplace= True)
+#print(all_teams_pts_reb_ast)
+#Returned
+#                        pts       reb       ast
+# team_abbreviation
+# NOP                8.972951  3.758197  2.050820
+# GSW                8.592021  3.770479  1.978989
+# SAC                8.562291  3.690503  1.809218
+# LAL                8.535849  3.771968  1.942318
+# PHX                8.508011  3.583149  1.915470
+# HOU                8.383069  3.684127  1.751587
+# DEN                8.382527  3.681720  1.884946
+# MIN                8.329508  3.604372  1.942623
+# MIL                8.322911  3.618329  1.907817
+# NOK                8.290625  3.718750  1.493750
+# NYK                8.242318  3.671968  1.733423
+# WAS                8.234565  3.563061  1.809499
+# LAC                8.215424  3.511568  1.786632
+# BOS                8.206540  3.519346  1.848501
+# IND                8.181671  3.598922  1.805391
+# DAL                8.126042  3.515104  1.761198
+# BKN                8.122857  3.392857  1.755000
+# MIA                8.120155  3.573902  1.749096
+# OKC                8.113333  3.510769  1.630769
+# CHI                8.098916  3.632520  1.903523
+# ORL                7.995652  3.496467  1.758152
+# PHI                7.947632  3.588684  1.742105
+# DET                7.944972  3.439385  1.774581
+# POR                7.930245  3.524796  1.725886
+# CHA                7.900394  3.522441  1.750000
+# UTA                7.898889  3.444167  1.853611
+# MEM                7.898095  3.388571  1.747937
+# CHH                7.883146  3.512360  1.865169
+# CLE                7.878205  3.565128  1.737692
+# NOH                7.853147  3.511189  1.759441
+# SAS                7.824934  3.406897  1.763660
+# NJN                7.796498  3.540856  1.719455
+# SEA                7.789560  3.341758  1.719780
+# TOR                7.778974  3.443077  1.699231
+# ATL                7.703655  3.461619  1.688251
+# VAN                7.540278  3.443056  1.881944
+# Process finished with exit code 0
 #
+#
+#Plot comparison for the top 10 teams with average points per player:
+#type = ['pts']
+#all_teams_pts = df.groupby('team_abbreviation')[type].mean()
+#all_teams_pts.sort_values(['pts'], ascending= [False], inplace= True)
+#plt.title("Top 10 NBA Teams with avg points per player")
+#plt.ylabel('Points Per Game')
+#plt.xlabel('Teams')
+#plt.xticks(rotation=90)
+#plt.plot((all_teams_pts).head(10))
+#plt.show()
+#Returned - LINE GRAPH SAVED ON LAN folder
+#
+##Plot comparison for the top 10 teams with average points per player - SEABORN - YOU R HERE!!!:
+#type = ['pts']
+#all_teams_pts = df.groupby('team_abbreviation')[type].mean()
+#all_teams_pts.sort_values(['pts'], ascending= [False], inplace= True)
+#plt.title("Top 10 NBA Teams with avg points per player")
+#plt.ylabel('Points Per Game')
+#plt.xlabel('Teams')
+#plt.xticks(rotation=90)
+#plt.plot((all_teams_pts).head(10))
+#plt.show()
+#sns.set(color_codes=True)
+#sns.histplot(all_teams_pts ['pts'], color ='r')
+#plt.show()
+#sns.relplot(x="college", kind= scatter, col= 'reb')
+#plt.show()
+
 #Plot comparison of all players on average - points, rebounds and assists:
 #type = ['pts', 'reb', 'ast']
 #all_players = df.groupby('player_name')[type].mean()
 #print(all_players)
 #
-#SORTING
+#Returned
+#                         pts       reb       ast
+#player_name
+#A.C. Green           5.780000  6.060000  0.860000
+#A.J. Bramlett        1.000000  2.800000  0.000000
+#A.J. Guyton          3.800000  0.700000  1.566667
+#AJ Hammons           2.200000  1.600000  0.200000
+#AJ Price             5.350000  1.333333  2.000000
+#...                       ...       ...       ...
+#Zion Williamson     23.600000  6.800000  2.200000
+#Zoran Dragic         1.800000  0.500000  0.300000
+#Zoran Planinic       3.833333  1.333333  1.100000
+#Zydrunas Ilgauskas  12.938462  7.338462  1.092308
+#Zylan Cheatham       1.300000  2.000000  0.700000
+#[2235 rows x 3 columns]
+#Process finished with exit code 0
+#
+#SORTING and GROUPING
 #To sort Players by tallest to smallest:
 #print(df.sort_values("player_height", ascending= False))
 #
+#Returned
+#Unnamed: 0       player_name team_abbreviation  ...  ts_pct  ast_pct   season
+#1212        1212  Gheorghe Muresan               NJN  ...   0.000    0.000  1998-99
+#1408        1408  Gheorghe Muresan               NJN  ...   0.492    0.056  1999-00
+#92            92  Gheorghe Muresan               WAS  ...   0.618    0.024  1996-97
+#3266        3266     Shawn Bradley               DAL  ...   0.523    0.038  2003-04
+#3662        3662          Yao Ming               HOU  ...   0.614    0.048  2004-05
+#...          ...               ...               ...  ...     ...      ...      ...
+#1123        1123     Muggsy Bogues               GSW  ...   0.539    0.338  1998-99
+#401          401     Muggsy Bogues               CHH  ...   0.554    0.366  1996-97
+#483          483     Muggsy Bogues               GSW  ...   0.492    0.344  1997-98
+#2020        2020     Muggsy Bogues               TOR  ...   0.000    0.294  2000-01
+#1705        1705     Muggsy Bogues               TOR  ...   0.517    0.266  1999-00
+##[11145 rows x 22 columns]
+#Process finished with exit code 0
+#
 ##To group Players by average height - below works.  Need to insert code to show 'tallest to smallest':
 #type = ['player_height']
-#players = (df.groupby("player_name")[type].mean())
-#print(players)
+#players_avg_height = (df.groupby("player_name")[type].mean())
+#print(players_avg_height)
+#
+#Returned
+#                    player_height
+#player_name
+#A.C. Green                 205.74
+#A.J. Bramlett              208.28
+#A.J. Guyton                185.42
+#AJ Hammons                 213.36
+#AJ Price                   187.96
+#...                           ...
+#Zion Williamson            198.12
+#Zoran Dragic               195.58
+#Zoran Planinic             200.66
+#Zydrunas Ilgauskas         220.98
+#Zylan Cheatham             195.58
+#[2235 rows x 1 columns]
+#Process finished with exit code 0
 #
 #Players who are above the avg height (>=201cm) and below the avg weight (<=101 lbs), sorted by tallest:
 #height_weight_avg= df[(df['player_height'] >= 201) & (df['player_weight'] <= 101)]
 #tallest_height_weight_avg = height_weight_avg.sort_values('player_height', ascending= False)
 #print(tallest_height_weight_avg)
-
+#
+#Returned
+#      Unnamed: 0      player_name team_abbreviation  ...  ts_pct  ast_pct   season
+#1280        1280      Keith Closs               LAC  ...   0.584    0.000  1998-99
+#520          520      Keith Closs               LAC  ...   0.482    0.041  1997-98
+#1690        1690      Keith Closs               LAC  ...   0.514    0.048  1999-00
+#880          880     Bruno Sundov               DAL  ...   0.286    0.143  1998-99
+#1514        1514     Bruno Sundov               DAL  ...   0.408    0.051  1999-00
+#...          ...              ...               ...  ...     ...      ...      ...
+#7271        7271  Reggie Williams               CHA  ...   0.517    0.180  2012-13
+#6051        6051  Reggie Williams               GSW  ...   0.588    0.125  2009-10
+#6857        6857  Reggie Williams               CHA  ...   0.503    0.154  2011-12
+#8457        8457  Reggie Williams               SAS  ...   0.454    0.169  2014-15
+#7647        7647  Reggie Williams               OKC  ...   0.611    0.143  2013-14
+#[925 rows x 22 columns]
+#Process finished with exit code 0
+#
