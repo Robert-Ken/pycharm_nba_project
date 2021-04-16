@@ -257,8 +257,8 @@ import seaborn as sns
 #print(df_teams_number)
 #
 #
-#GROUPING
-#Group the dataset by player then season in ascending order:
+#GROUPING and INDEXING
+#Group player and then group by season:
 #df_grouped = df.groupby(['player_name', 'season'])
 #print(df_grouped.first())
 #Returned
@@ -279,12 +279,90 @@ import seaborn as sns
 #[11141 rows x 20 columns]
 #Process finished with exit code 0
 #
-#To group NBA teams and select a specific team to view the players:
-teams_grp = df.groupby(['team_abbreviation'])
-print(teams_grp.get_group('BOS'))
-
-
-
+##To group players by selecting a specific team:
+#teams_grp = df.groupby(['team_abbreviation'])
+#print(teams_grp.get_group('BOS'))
+#Returned
+#Unnamed: 0       player_name team_abbreviation  ...  ts_pct  ast_pct   season
+#20             20     Eric Williams               BOS  ...   0.533    0.087  1996-97
+#41             41        Dino Radja               BOS  ...   0.471    0.092  1996-97
+#94             94  Frank Brickowski               BOS  ...   0.512    0.116  1996-97
+#102           102        Greg Minor               BOS  ...   0.519    0.103  1996-97
+#108           108         Dee Brown               BOS
+#[367 rows x 22 columns]
+#Process finished with exit code 0
+#
+#To index on team and college by grouping teams by colleges showing how many players from each college
+# when to each team:
+#teams_college_grp = teams_grp = df.groupby(['team_abbreviation'])
+#print(teams_college_grp['college'].value_counts())
+#Returned
+#team_abbreviation  college
+#ATL                None              60
+#                   Georgia Tech      14
+#                   Duke              13
+#                   Arizona           11
+#                   North Carolina    11
+#                                     ..
+#WAS                Utah               1
+#                   Virginia Tech      1
+#                   Washington         1
+#                   Wichita State      1
+#                   Wisconsin          1
+#Name: college, Length: 2946, dtype: int64
+#Process finished with exit code 0
+#
+#To index on team and college by grouping teams by colleges showing the percentage of players from each college:
+#teams_college_grp = teams_grp = df.groupby(['team_abbreviation'])
+#print(teams_college_grp['college'].value_counts(normalize=True))
+#Returned
+#team_abbreviation  college
+#ATL                None              0.156658
+#                   Georgia Tech      0.036554
+#                   Duke              0.033943
+#                   Arizona           0.028721
+#                   North Carolina    0.028721
+#                                       ...
+#WAS                Utah              0.002639
+#                   Virginia Tech     0.002639
+#                   Washington        0.002639
+#                   Wichita State     0.002639
+#                   Wisconsin         0.002639
+#Name: college, Length: 2946, dtype: float64
+#Process finished with exit code 0
+#
+#To index on college by grouping colleges to show the percentage of players for a specific team:
+teams_college_grp = teams_grp = df.groupby(['team_abbreviation'])
+print(teams_college_grp['college'].value_counts(normalize=True).loc['LAL'])
+#Returned
+#college
+#None                    0.191375
+#Arizona                 0.045822
+#North Carolina          0.040431
+#UCLA                    0.040431
+#Arkansas-Little Rock    0.032345
+#                          ...
+#Tulsa                   0.002695
+#University of Dayton    0.002695
+#Utah Valley             0.002695
+#Washington              0.002695
+#Xavier                  0.002695
+#Name: college, Length: 86, dtype: float64
+#Process finished with exit code 0
+#
+#To filter players for a specific team, e.g. LA Lakers (LAL) and show how many players per college:
+#filt = df['team_abbreviation'] == 'LAL'
+#print(df.loc[filt] ['college'].value_counts())
+#Returned:
+#None                           71
+#Arizona                        17
+#North Carolina                 15
+#UCLA                           15
+#Duke                           12
+#Name: college, Length: 86, dtype: int64
+#Process finished with exit code 0
+#
+#
 #Plot Lebron James average points per season:
 #lebron_avg_pts = df.loc[df.player_name == 'LeBron James', ['pts','season']]
 #plt.plot(lebron_avg_pts["season"], lebron_avg_pts["pts"])
@@ -317,6 +395,7 @@ print(teams_grp.get_group('BOS'))
 #all_players = df.groupby('player_name')[type].mean()
 #print(all_players)
 #
+#SORTING
 #To sort Players by tallest to smallest:
 #print(df.sort_values("player_height", ascending= False))
 #
