@@ -274,6 +274,13 @@ import seaborn as sns
 #To sort Players by tallest to smallest:
 #print(df.sort_values("player_height", ascending= False))
 #
+##To group Players by average height - below works.  Need to insert code to show 'tallest to smallest':
 #type = ['player_height']
 #players = (df.groupby("player_name")[type].mean())
 #print(players)
+#
+#Players who are above the avg height (>=201cm) and below the avg weight (<=101 lbs), sorted by tallest:
+height_weight_avg= df[(df['player_height'] >= 201) & (df['player_weight'] <= 101)]
+tallest_height_weight_avg = height_weight_avg.sort_values('player_height', ascending= False)
+print(tallest_height_weight_avg)
+
