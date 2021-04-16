@@ -82,7 +82,6 @@ import seaborn as sns
 #ast_pct              float64
 #season                object
 #dtype: object
-#
 #Process finished with exit code 0
 #
 #To check for any missing data and if so, the number of missing data in each column:
@@ -111,17 +110,50 @@ import seaborn as sns
 #ast_pct              0
 #season               0
 #dtype: int64
+##Process finished with exit code 0
 #
-#Process finished with exit code 0
-#
-#To drop any duplicated values using columns 'player_name' and 'country' and create
+#To drop any duplicated values using columns 'player_name' and 'college' and create
 # a new dataframe 'df_unique'.  Also, check the revised size:
-#df_unique = df.drop_duplicates(subset= ["player_name", "country"])
+#df_unique = df.drop_duplicates(subset= ["player_name", "college"])
 #print(df_unique.shape)
 #print(df_unique)
 #Returned:
-#(2238, 22)
+#([2278 rows x 22 columns]
+##Process finished with exit code 0
 #
+#To check the median of the DataFrame:
+#print(df.median())
+#Returned
+#Unnamed: 0       5572.00000
+#age                27.00000
+#player_height     200.66000
+#player_weight      99.79024
+#gp                 58.00000
+#pts                 6.60000
+#reb                 3.00000
+#ast                 1.20000
+#net_rating         -1.30000
+#oreb_pct            0.04300
+#dreb_pct            0.13200
+#usg_pct             0.18200
+#ts_pct              0.52100
+#ast_pct             0.10200
+#dtype: float64
+#Process finished with exit code 0
+#
+#To check statistical overview of data:
+#print(df.describe())
+#        Unnamed: 0           age  ...        ts_pct       ast_pct
+#count  11145.000000  11145.000000  ...  11145.000000  11145.000000
+#mean    5572.000000     27.168686  ...      0.508099      0.131078
+#std     3217.428709      4.344164  ...      0.098879      0.095017
+#min        0.000000     18.000000  ...      0.000000      0.000000
+#25%     2786.000000     24.000000  ...      0.478000      0.065000
+#50%     5572.000000     27.000000  ...      0.521000      0.102000
+#75%     8358.000000     30.000000  ...      0.557000      0.178000
+#max    11144.000000     44.000000  ...      1.500000      1.000000
+#
+#[8 rows x 14 columns]
 #Process finished with exit code 0
 #
 #To check Lebron James point averages for each season:
@@ -178,14 +210,13 @@ import seaborn as sns
 #10494  Kevin Durant  26.0  2018-19
 #
 #Process finished with exit code 0
-
-
-#To check the average assists per season for John Stockton:
-#print(df.loc[df.player_name == 'John Stockton'].ast.mean())
-#Returned
-#5.722222222222222
 #
 #SORTING
+#To sort by NBA Team and then colleges:
+#print(df.sort_values(by=['team_abbreviation', 'college'], ascending=[True, True], inplace= True))
+#print(df[['team_abbreviation', 'college']].head(40))
+
+
 #To check all the players from Greece
 #print(df.query("country == 'Greece'"))
 #Returned
@@ -217,6 +248,15 @@ import seaborn as sns
 #[24 rows x 22 columns]
 #Process finished with exit code 0
 #
+#To check which colleges have the largest number of players:
+#df_college_number = df["college"].value_counts()
+#print(df_college_number)
+#
+#To check which teams have the largest number of players:
+#df_teams_number = df["team_abbreviation"].value_counts()
+#print(df_teams_number)
+#
+#
 #GROUPING
 #Group the dataset by player then season in ascending order:
 #df_grouped = df.groupby(['player_name', 'season'])
@@ -237,8 +277,14 @@ import seaborn as sns
 #Zylan Cheatham     2019-20       10980               NOP  ...   0.400    0.133
 #
 #[11141 rows x 20 columns]
-##Process finished with exit code 0
+#Process finished with exit code 0
 #
+#To group NBA teams and select a specific team to view the players:
+teams_grp = df.groupby(['team_abbreviation'])
+print(teams_grp.get_group('BOS'))
+
+
+
 #Plot Lebron James average points per season:
 #lebron_avg_pts = df.loc[df.player_name == 'LeBron James', ['pts','season']]
 #plt.plot(lebron_avg_pts["season"], lebron_avg_pts["pts"])
@@ -280,7 +326,7 @@ import seaborn as sns
 #print(players)
 #
 #Players who are above the avg height (>=201cm) and below the avg weight (<=101 lbs), sorted by tallest:
-height_weight_avg= df[(df['player_height'] >= 201) & (df['player_weight'] <= 101)]
-tallest_height_weight_avg = height_weight_avg.sort_values('player_height', ascending= False)
-print(tallest_height_weight_avg)
+#height_weight_avg= df[(df['player_height'] >= 201) & (df['player_weight'] <= 101)]
+#tallest_height_weight_avg = height_weight_avg.sort_values('player_height', ascending= False)
+#print(tallest_height_weight_avg)
 
