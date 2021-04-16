@@ -522,11 +522,11 @@ import seaborn as sns
 # Process finished with exit code 0
 #
 #
-#Plot comparison for the top 10 teams with average points per player:
+#Plot comparison for the average points per player for Top 10 Teams:
 #type = ['pts']
 #all_teams_pts = df.groupby('team_abbreviation')[type].mean()
 #all_teams_pts.sort_values(['pts'], ascending= [False], inplace= True)
-#plt.title("Top 10 NBA Teams with avg points per player")
+#plt.title("Avg points per player for the Top 10 Teams")
 #plt.ylabel('Points Per Game')
 #plt.xlabel('Teams')
 #plt.xticks(rotation=90)
