@@ -371,6 +371,7 @@ import seaborn as sns
 ##To group players by selecting a specific team:
 #teams_grp = df.groupby(['team_abbreviation'])
 #print(teams_grp.get_group('BOS'))
+
 #Returned
 #Unnamed: 0       player_name team_abbreviation  ...  ts_pct  ast_pct   season
 #20             20     Eric Williams               BOS  ...   0.533    0.087  1996-97
@@ -381,7 +382,7 @@ import seaborn as sns
 #[367 rows x 22 columns]
 #Process finished with exit code 0
 #
-#To index on team and college by grouping teams by colleges showing how many players from each college
+#To group by teams and colleges showing how many players from each college
 # when to each team:
 #teams_college_grp = teams_grp = df.groupby(['team_abbreviation'])
 #print(teams_college_grp['college'].value_counts())
@@ -574,7 +575,7 @@ import seaborn as sns
 #
 #SORTING and GROUPING
 #To sort Players by tallest to smallest:
-#print(df.sort_values("player_height", ascending= False))
+print(df.sort_values("player_height", ascending= False))
 #
 #Returned
 #Unnamed: 0       player_name team_abbreviation  ...  ts_pct  ast_pct   season
