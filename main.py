@@ -112,6 +112,26 @@ import seaborn as sns
 #dtype: int64
 ##Process finished with exit code 0
 #
+#To check the median for each column:
+#print(df.median())
+#Returned
+#Unnamed: 0       5572.00000
+#age                27.00000
+#player_height     200.66000
+#player_weight      99.79024
+#gp                 58.00000
+#pts                 6.60000
+#reb                 3.00000
+#ast                 1.20000
+#net_rating         -1.30000
+#oreb_pct            0.04300
+#dreb_pct            0.13200
+#usg_pct             0.18200
+#ts_pct              0.52100
+#ast_pct             0.10200
+#dtype: float64
+#Process finished with exit code 0
+#
 #To drop any duplicated values using columns 'player_name' and 'college' and create
 # a new dataframe 'df_drop_dup'.  Also, check the revised size:
 #df_drop_dup = df.drop_duplicates(subset= ["player_name", "college"])
@@ -160,47 +180,64 @@ import seaborn as sns
 #Process finished with exit code 0
 #
 #To sort players based on points (pts) in decending order:
-#group_player_avg_pts= df.groupby('player_name').agg({'pts': 'mean'})
+#group_player_avg_pts= df.groupby('player_name').agg({'pts': 'mean', 'reb' : 'mean', 'ast': 'mean'})
 #players_ascending = group_player_avg_pts.sort_values(by=['pts'], ascending =[False])
 #print(players_ascending.head(10))
 #Returned:
-#                      pts
+#         pts        reb       ast
 #player_name
-#LeBron James    27.064706
-#Kevin Durant    26.883333
-#Allen Iverson   26.064286
-#Michael Jordan  25.300000
-#James Harden    25.154545
-#Luka Doncic     24.800000
-#Damian Lillard  24.312500
-#Trae Young      24.250000
-#Kobe Bryant     24.200000
-#Anthony Davis   23.950000
+#LeBron James    27.064706   7.447059  7.441176
+#Kevin Durant    26.883333   7.075000  4.125000
+#Allen Iverson   26.064286   3.692857  6.000000
+#Michael Jordan  25.300000   5.875000  4.200000
+#James Harden    25.154545   5.300000  6.263636
+#Luka Doncic     24.800000   8.600000  7.350000
+#Damian Lillard  24.312500   4.187500  6.537500
+#Trae Young      24.250000   4.000000  8.650000
+#Kobe Bryant     24.200000   5.200000  4.760000
+#Anthony Davis   23.950000  10.387500  2.275000
 #Process finished with exit code 0
+#
+#Plot Players overall average points for all seasons:
 
 
-
-
-
-
-#To check the median for each column:
-#print(df.median())
-#Returned
-#Unnamed: 0       5572.00000
-#age                27.00000
-#player_height     200.66000
-#player_weight      99.79024
-#gp                 58.00000
-#pts                 6.60000
-#reb                 3.00000
-#ast                 1.20000
-#net_rating         -1.30000
-#oreb_pct            0.04300
-#dreb_pct            0.13200
-#usg_pct             0.18200
-#ts_pct              0.52100
-#ast_pct             0.10200
-#dtype: float64
+#To sort players based on rebounds (reb) in decending order:
+#group_player_avg_pts= df.groupby('player_name').agg({'pts': 'mean', 'reb' : 'mean', 'ast': 'mean'})
+#players_ascending = group_player_avg_pts.sort_values(by=['reb'], ascending =[False])
+#print(players_ascending.head(10))
+#Returned:
+#                          pts        reb       ast
+#player_name
+#Dennis Rodman        3.825000  14.150000  2.125000
+#Andre Drummond      14.350000  13.725000  1.325000
+#Jayson Williams     11.466667  13.033333  1.100000
+#Dwight Howard       16.500000  12.087500  1.356250
+#Charles Barkley     16.250000  12.000000  3.925000
+#Karl-Anthony Towns  23.120000  11.660000  2.980000
+#Kevin Love          18.283333  11.300000  2.333333
+#Deandre Ayton       17.650000  11.150000  1.850000
+#Joel Embiid         23.475000  11.050000  3.025000
+#DeMarcus Cousins    21.277778  10.833333  3.355556
+#Process finished with exit code 0
+#
+#To sort players based on assists (ast) in decending order:
+#group_player_avg_pts= df.groupby('player_name').agg({'pts': 'mean', 'reb' : 'mean', 'ast': 'mean'})
+#players_ascending = group_player_avg_pts.sort_values(by=['ast'], ascending =[False])
+#print(players_ascending.head(10))
+#
+#Returned:
+#                         pts       reb       ast
+#player_name
+#Chris Paul         18.406667  4.506667  9.440000
+#John Wall          19.022222  4.244444  9.100000
+#Jason Kidd         12.376471  6.241176  8.682353
+#Trae Young         24.250000  4.000000  8.650000
+#John Stockton      12.185714  2.771429  8.528571
+#Rajon Rondo        10.278571  4.764286  8.442857
+#Russell Westbrook  23.408333  7.083333  8.225000
+#Steve Nash         13.522222  2.911111  8.161111
+#Ben Simmons        16.466667  8.233333  8.033333
+#Deron Williams     16.358333  3.100000  8.025000
 #Process finished with exit code 0
 #
 #To check statistical overview of data:
