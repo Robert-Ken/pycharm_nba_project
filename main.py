@@ -113,15 +113,77 @@ import seaborn as sns
 ##Process finished with exit code 0
 #
 #To drop any duplicated values using columns 'player_name' and 'college' and create
-# a new dataframe 'df_unique'.  Also, check the revised size:
-#df_unique = df.drop_duplicates(subset= ["player_name", "college"])
-#print(df_unique.shape)
-#print(df_unique)
+# a new dataframe 'df_drop_dup'.  Also, check the revised size:
+#df_drop_dup = df.drop_duplicates(subset= ["player_name", "college"])
+#print(df_drop_dup.shape)
 #Returned:
 #([2278 rows x 22 columns]
 ##Process finished with exit code 0
+
+#To show new dataframe removing duplicates on  Player's name, sort in ascending order:
+#df_drop_dup = df.drop_duplicates(subset= ["player_name", "college"])
+#players_ascending = df_drop_dup.sort_values(by=["player_name"], ascending =[True])
+#print(players_ascending.head(10))
+#Returned: players_ascending:
+#Unnamed: 0     player_name team_abbreviation  ...  ts_pct  ast_pct   season
+#138           138      A.C. Green               DAL  ...   0.523    0.045  1996-97
+#1538         1538   A.J. Bramlett               CLE  ...   0.190    0.000  1999-00
+#1759         1759     A.J. Guyton               CHI  ...   0.495    0.198  2000-01
+#9147         9147      AJ Hammons               DAL  ...   0.472    0.038  2016-17
+#5805         5805        AJ Price               IND  ...   0.530    0.198  2009-10
+#5025         5025    Aaron Brooks               HOU  ...   0.535    0.249  2007-08
+#8200         8200    Aaron Gordon               ORL  ...   0.517    0.064  2014-15
+#5026         5026      Aaron Gray               CHI  ...   0.529    0.113  2007-08
+#8924         8924  Aaron Harrison               CHA  ...   0.371    0.033  2015-16
+#10627       10627   Aaron Holiday               IND  ...   0.518    0.180  2018-19
+#[10 rows x 22 columns]
+#Process finished with exit code 0
 #
-#To check the median of the DataFrame:
+#Using the new dataframe removing duplicates on  Player's name, sort in ascending order,
+#selecting columns 'player_name', 'team_abbreviation', 'college', 'pts':
+#df_drop_dup = df.drop_duplicates(subset= ["player_name", "college"])
+#players_ascending = df_drop_dup.sort_values(by=["player_name"], ascending =[True])
+#players_all_selected = players_ascending[['player_name', 'team_abbreviation', 'college', 'pts']]
+#print(players_all_selected.head(10))
+#Returned: players_selected:
+#player_name team_abbreviation       college  pts
+#138        A.C. Green               DAL  Oregon State  7.2
+#1538    A.J. Bramlett               CLE       Arizona  1.0
+#1759      A.J. Guyton               CHI       Indiana  6.0
+#9147       AJ Hammons               DAL        Purdue  2.2
+#5805         AJ Price               IND   Connecticut  7.3
+#5025     Aaron Brooks               HOU        Oregon  5.2
+#8200     Aaron Gordon               ORL       Arizona  5.2
+#5026       Aaron Gray               CHI    Pittsburgh  4.3
+#8924   Aaron Harrison               CHA      Kentucky  0.9
+#10627   Aaron Holiday               IND          UCLA  5.9
+#Process finished with exit code 0
+#
+#To sort players based on points (pts) in decending order:
+#group_player_avg_pts= df.groupby('player_name').agg({'pts': 'mean'})
+#players_ascending = group_player_avg_pts.sort_values(by=['pts'], ascending =[False])
+#print(players_ascending.head(10))
+#Returned:
+#                      pts
+#player_name
+#LeBron James    27.064706
+#Kevin Durant    26.883333
+#Allen Iverson   26.064286
+#Michael Jordan  25.300000
+#James Harden    25.154545
+#Luka Doncic     24.800000
+#Damian Lillard  24.312500
+#Trae Young      24.250000
+#Kobe Bryant     24.200000
+#Anthony Davis   23.950000
+#Process finished with exit code 0
+
+
+
+
+
+
+#To check the median for each column:
 #print(df.median())
 #Returned
 #Unnamed: 0       5572.00000
@@ -181,7 +243,6 @@ import seaborn as sns
 #print(players_avg_pts['pts'].median().loc['Seth Curry'])
 #Returned
 #7.35
-#
 #
 #To check Lebron James point averages for each season:
 #lbj_avg_pts = df.loc[df.player_name == 'LeBron James', ['player_name', 'pts', 'season']]
@@ -575,7 +636,7 @@ import seaborn as sns
 #
 #SORTING and GROUPING
 #To sort Players by tallest to smallest:
-print(df.sort_values("player_height", ascending= False))
+#print(df.sort_values("player_height", ascending= False))
 #
 #Returned
 #Unnamed: 0       player_name team_abbreviation  ...  ts_pct  ast_pct   season
