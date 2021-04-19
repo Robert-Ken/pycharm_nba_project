@@ -751,26 +751,34 @@ import seaborn as sns
 #[2235 rows x 1 columns]
 #Process finished with exit code 0
 #
-
+#Plot the tallest players in the NBA:
+#group_player_avg_height= df.groupby('player_name').agg({'player_height': 'mean'})
+#players_ascending_height = group_player_avg_height.sort_values(by=['player_height'], ascending =[False])
+#plt.plot((players_ascending_height).head(10))
+#plt.xticks(rotation=90)
+#plt.title("Top 10 tallest players in the NBA")
+#plt.ylabel('Height (cm)')
+#plt.xlabel('Players')
+#plt.show()
+#Returned: Graph saved to LAN folder
 #
 #Players who are above the avg height (>=201cm) and below the avg weight (<=101 lbs), sorted by tallest:
-#height_weight_avg= df[(df['player_height'] >= 201) & (df['player_weight'] <= 101)]
-#tallest_height_weight_avg = height_weight_avg.sort_values('player_height', ascending= False)
-#print(tallest_height_weight_avg)
-#
-#Returned
-#      Unnamed: 0      player_name team_abbreviation  ...  ts_pct  ast_pct   season
-#1280        1280      Keith Closs               LAC  ...   0.584    0.000  1998-99
-#520          520      Keith Closs               LAC  ...   0.482    0.041  1997-98
-#1690        1690      Keith Closs               LAC  ...   0.514    0.048  1999-00
-#880          880     Bruno Sundov               DAL  ...   0.286    0.143  1998-99
-#1514        1514     Bruno Sundov               DAL  ...   0.408    0.051  1999-00
-#...          ...              ...               ...  ...     ...      ...      ...
-#7271        7271  Reggie Williams               CHA  ...   0.517    0.180  2012-13
-#6051        6051  Reggie Williams               GSW  ...   0.588    0.125  2009-10
-#6857        6857  Reggie Williams               CHA  ...   0.503    0.154  2011-12
-#8457        8457  Reggie Williams               SAS  ...   0.454    0.169  2014-15
-#7647        7647  Reggie Williams               OKC  ...   0.611    0.143  2013-14
-#[925 rows x 22 columns]
+#group_height_weight= df.groupby('player_name').agg({'player_height': 'mean', 'player_weight' : 'mean'})
+#players_ascending_height_weight = group_height_weight.sort_values(by=['player_height', 'player_weight'],
+#                                                                  ascending =[False, True])
+#print((players_ascending_height_weight).head(10))
+#Returned:
+#                  player_height  player_weight
+#player_name
+#Gheorghe Muresan        231.1400     137.438376
+#Shawn Bradley           228.6000     119.798687
+#Yao Ming                228.2825     139.819734
+#Pavel Podkolzin         226.0600     117.933920
+#Slavko Vranes           226.0600     124.737800
+#Tacko Fall              226.0600     141.067112
+#Sim Bhullar             226.0600     163.293120
+#Rik Smits               223.5200     120.201880
+#Priest Lauderdale       223.5200     151.499728
+#Boban Marjanovic        221.4880     131.541680
 #Process finished with exit code 0
 #
