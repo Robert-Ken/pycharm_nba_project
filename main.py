@@ -318,7 +318,7 @@ import seaborn as sns
 #10520  LeBron James  27.4  2018-19
 #11042  LeBron James  25.6  2019-20
 #
-#Returned - Graph saved on LAN folder
+#To plot LeBron James average points per season:
 #lebron_avg_pts = df.loc[df.player_name == 'LeBron James', ['season','pts']]
 #plt.plot(lebron_avg_pts["season"], lebron_avg_pts["pts"])
 #plt.ylabel('Points Per Game')
@@ -432,11 +432,7 @@ import seaborn as sns
 #[153 rows x 22 columns]
 #Process finished with exit code 0
 #
-#To check which colleges have the largest number of players:
-#df= df.assign(college_players_number = df["college"].value_counts(),
-#             college_players_percentage= (df["college"].value_counts(normalize=True)*100))
-
-#college_number_players = df["college"].value_counts()
+#To list the colleges with the largest number of players, in percentage terms:
 #college_number_players = (df["college"].value_counts(normalize=True)*100)
 #print(college_number_players)
 #Returned
@@ -454,7 +450,17 @@ import seaborn as sns
 #Name: college, Length: 316, dtype: float64
 #Process finished with exit code 0
 #
-#To sort the top 10 teams which have the largest number of players:
+#Plot the Top 10 colleges with players in the NBA:
+#college_number_players = (df["college"].value_counts(normalize=True)*100)
+#plt.plot(college_number_players.head(10))
+#plt.ylabel('% players')
+#plt.xticks(rotation=45)
+#plt.title("Top 10 Colleges with Players in the NBA")
+#plt.xlabel('Colleges')
+#plt.show()
+#Returned: Graph saved on LAN folder
+#
+#To list the top 10 teams which have the largest number of players:
 #df_teams_number = df["team_abbreviation"].value_counts()
 #print((df_teams_number).head(10))
 #
@@ -472,6 +478,17 @@ import seaborn as sns
 #Name: team_abbreviation, dtype: int64
 #Process finished with exit code 0
 #
+#Plot the Top 10 teams with most players in the NBA:
+#df_teams_number = df["team_abbreviation"].value_counts()
+#plt.plot(df_teams_number.head(10))
+#plt.ylabel('No. of players')
+#plt.xticks(rotation=45)
+#plt.title("Top 10 Teams with Players in the NBA")
+#plt.xlabel('Teams')
+#plt.show()
+#Returned: Graph saved on LAN folder
+#
+########                     U R HERE   ############################################
 #
 #GROUPING and INDEXING
 #Group player and then group by season:
