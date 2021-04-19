@@ -114,7 +114,7 @@ import seaborn as sns
 #
 #To check the median for each column:
 #print(df.median())
-#Returned
+#Returned:
 #Unnamed: 0       5572.00000
 #age                27.00000
 #player_height     200.66000
@@ -138,13 +138,13 @@ import seaborn as sns
 #print(df_drop_dup.shape)
 #Returned:
 #([2278 rows x 22 columns]
-##Process finished with exit code 0
-
+#Process finished with exit code 0
+#
 #To show new dataframe removing duplicates on  Player's name, sort in ascending order:
 #df_drop_dup = df.drop_duplicates(subset= ["player_name", "college"])
 #players_ascending = df_drop_dup.sort_values(by=["player_name"], ascending =[True])
 #print(players_ascending.head(10))
-#Returned: players_ascending:
+#Returned:
 #Unnamed: 0     player_name team_abbreviation  ...  ts_pct  ast_pct   season
 #138           138      A.C. Green               DAL  ...   0.523    0.045  1996-97
 #1538         1538   A.J. Bramlett               CLE  ...   0.190    0.000  1999-00
@@ -165,8 +165,8 @@ import seaborn as sns
 #players_ascending = df_drop_dup.sort_values(by=["player_name"], ascending =[True])
 #players_all_selected = players_ascending[['player_name', 'team_abbreviation', 'college', 'pts']]
 #print(players_all_selected.head(10))
-#Returned: players_selected:
-#player_name team_abbreviation       college  pts
+#Returned:
+#         player_name team_abbreviation       college  pts
 #138        A.C. Green               DAL  Oregon State  7.2
 #1538    A.J. Bramlett               CLE       Arizona  1.0
 #1759      A.J. Guyton               CHI       Indiana  6.0
@@ -184,7 +184,7 @@ import seaborn as sns
 #players_ascending_pts = group_player_avg_pts.sort_values(by=['pts'], ascending =[False])
 #print(players_ascending_pts.head(10))
 #Returned:
-#         pts        reb       ast
+#                    pts        reb       ast
 #player_name
 #LeBron James    27.064706   7.447059  7.441176
 #Kevin Durant    26.883333   7.075000  4.125000
@@ -202,13 +202,14 @@ import seaborn as sns
 #player_avg_pts= df.groupby('player_name').agg({'pts': 'mean'})
 #players_ascending_pts = player_avg_pts.sort_values(by=['pts'], ascending =[False])
 #players_pts_plot= players_ascending_pts.head(10)
+#players_pts_plot.plot(kind='bar')
 #plt.plot(players_pts_plot)
 #plt.ylabel('Avg Points')
 #plt.xticks(rotation=45)
 #plt.title("Top 10 Players average points")
 #plt.xlabel('Players')
 #plt.show()
-#Returned - Graph saved on LAN folder
+#Returned - Bar Chart  saved on LAN folder
 #
 #To sort players based on rebounds (reb) in decending order:
 #group_player_avg_pts= df.groupby('player_name').agg({'pts': 'mean', 'reb' : 'mean', 'ast': 'mean'})
@@ -233,13 +234,14 @@ import seaborn as sns
 #player_avg_reb= df.groupby('player_name').agg({'reb': 'mean'})
 #players_ascending_reb = player_avg_reb.sort_values(by=['reb'], ascending =[False])
 #players_reb_plot= players_ascending_reb.head(10)
+#players_reb_plot.plot(kind='bar')
 #plt.plot(players_reb_plot)
 #plt.ylabel('Avg Rebounds')
 #plt.xticks(rotation=45)
 #plt.title("Top 10 Players average rebounds")
 #plt.xlabel('Players')
 #plt.show()
-#Returned - Graph saved on LAN folder
+#Returned - Bar Chart  saved on LAN folder
 #
 #To sort players based on assists (ast) in decending order:
 #group_player_avg_pts= df.groupby('player_name').agg({'pts': 'mean', 'reb' : 'mean', 'ast': 'mean'})
@@ -265,17 +267,18 @@ import seaborn as sns
 #player_avg_ast= df.groupby('player_name').agg({'ast': 'mean'})
 #players_ascending_ast = player_avg_ast.sort_values(by=['ast'], ascending =[False])
 #players_ast_plot= players_ascending_ast.head(10)
+#players_ast_plot.plot(kind='bar')
 #plt.plot(players_ast_plot)
 #plt.ylabel('Avg Assists')
 #plt.xticks(rotation=45)
 #plt.title("Top 10 Players average assists")
 #plt.xlabel('Players')
 #plt.show()
-#Returned - Graph saved on LAN folder
+#Returned - Bar Chart saved on LAN folder
 #
 #To check statistical overview of data:
 #print(df.describe())
-#Returned
+#Returned:
 #        Unnamed: 0           age  ...        ts_pct       ast_pct
 #count  11145.000000  11145.000000  ...  11145.000000  11145.000000
 #mean    5572.000000     27.168686  ...      0.508099      0.131078
@@ -292,14 +295,14 @@ import seaborn as sns
 #To check the median points for a specific player:
 #players_avg_pts = df.groupby(['player_name'])
 #print(players_avg_pts['pts'].median().loc['Seth Curry'])
-#Returned
+#Returned:
 #7.35
 #
 #To check Lebron James point averages for each season:
 #lbj_avg_pts = df.loc[df.player_name == 'LeBron James', ['player_name', 'pts', 'season']]
 #print(lbj_avg_pts)
-#Returned
-#      player_name   pts   season
+#Returned:
+#       player_name   pts   season
 #3120   LeBron James  20.9  2003-04
 #3617   LeBron James  27.2  2004-05
 #4075   LeBron James  31.4  2005-06
@@ -331,7 +334,7 @@ import seaborn as sns
 #To check Kawhi Leonard point averages for each season:
 #kl_avg_pts = df.loc[df.player_name == 'Kawhi Leonard', ['player_name', 'pts', 'season']]
 #print(kl_avg_pts)
-#Returned
+#Returned:
 #         player_name   pts   season
 #7016   Kawhi Leonard   7.9  2011-12
 #7467   Kawhi Leonard  11.9  2012-13
@@ -346,8 +349,7 @@ import seaborn as sns
 #To check Kevin Durant point averages for each season:
 #kd_avg_pts = df.loc[df.player_name == 'Kevin Durant', ['player_name', 'pts', 'season']]
 #print(kd_avg_pts)
-#
-#Returned
+#Returned:
 #       player_name   pts   season
 #5164   Kevin Durant  20.3  2007-08
 #5411   Kevin Durant  25.3  2008-09
@@ -373,10 +375,8 @@ import seaborn as sns
 #plt.xlabel('Season')
 #plt.xticks(rotation=90)
 #plt.show()
-#Returned - graph saved to LAN folder - ##### X & Y TICKS ARE NOT RIGHT IN THIS GRAPH #########
+#Returned - graph saved to LAN folder
 #
-#
-#SORTING
 #Percentage of players broken down by country:
 #country= (df['country'].value_counts(normalize= True)*100)
 #print(country)
@@ -387,12 +387,33 @@ import seaborn as sns
 #Spain                   0.708838
 #Brazil                  0.699865
 #                         ...
+#Sudan                   0.008973
+#Sudan (UK)              0.008973
+#Guinea                  0.008973
 #Trinidad and Tobago     0.008973
 #Ghana                   0.008973
-#Sudan                   0.008973
-#Angola                  0.008973
-#Sudan (UK)              0.008973
 #Name: country, Length: 76, dtype: float64
+#Process finished with exit code 0
+#
+#Create a dictionary using the 'for loop' of the Top 10 countries for percentage of players:
+#country= {'USA' : 84.4, 'France' : 1.4, 'Canada' : 1.3, 'Spain' : 0.7, 'Brazil' : 0.7,
+#                   'Australia' : 0.6, 'Slovenia' : 0.6, 'Turkey': 0.6, 'Croatia' : 0.6, 'Argentina' : 0.5}
+#print(country)
+#for country, percentage in country.items():
+#    print('Players from' + ' '+ country + ' ' 'account for' + ' ' + str(percentage) + ' ' + '% of NBA players')
+#Returned:
+#{'USA': 84.4, 'France': 1.4, 'Canada': 1.3, 'Spain': 0.7, 'Brazil': 0.7, 'Australia': 0.6, 'Slovenia': 0.6,
+#       'Turkey': 0.6, 'Croatia': 0.6, 'Argentina': 0.5}
+#Players from USA account for 84.4 % of NBA players
+#Players from France account for 1.4 % of NBA players
+#Players from Canada account for 1.3 % of NBA players
+#Players from Spain account for 0.7 % of NBA players
+#Players from Brazil account for 0.7 % of NBA players
+#Players from Australia account for 0.6 % of NBA players
+#Players from Slovenia account for 0.6 % of NBA players
+#Players from Turkey account for 0.6 % of NBA players
+#Players from Croatia account for 0.6 % of NBA players
+#Players from Argentina account for 0.5 % of NBA players
 #Process finished with exit code 0
 #
 #Excluding the USA Players, the percentage of Non-USA Players broken down by country:
@@ -435,7 +456,7 @@ import seaborn as sns
 #To list the colleges with the largest number of players, in percentage terms:
 #college_number_players = (df["college"].value_counts(normalize=True)*100)
 #print(college_number_players)
-#Returned
+#Returned:
 #None                   15.109915
 #Kentucky                3.230148
 #Duke                    2.969942
@@ -450,7 +471,28 @@ import seaborn as sns
 #Name: college, Length: 316, dtype: float64
 #Process finished with exit code 0
 #
-#Plot the Top 10 colleges with players in the NBA:
+#Create a dictionary using the 'for loop' of the Top 10 colleges for percentage of players:
+#college= {'No College' : 15.1, 'Kentucky' : 3.2, 'Duke' : 2.9, 'North Carolina' : 2.9, 'UCLA ' : 2.5,
+#                   'Arizona' : 2.3, 'Kansas' : 2.3, 'Connecticut ': 1.9, 'Georgia Tech' : 1.6, 'Florida ' : 1.6}
+#print(college)
+#for college, percentage in college.items():
+#    print('Players who attended' + ' '+ college + ' ' 'account for' + ' ' + str(percentage) + ' ' + '% of NBA players')
+#Returned:
+#{'No College': 15.1, 'Kentucky': 3.2, 'Duke': 2.9, 'North Carolina': 2.9, 'UCLA ': 2.5, 'Arizona': 2.3, 'Kansas': 2.3,
+#       'Connecticut ': 1.9, 'Georgia Tech': 1.6, 'Florida ': 1.6}
+#Players who attended No College account for 15.1 % of NBA players
+#Players who attended Kentucky account for 3.2 % of NBA players
+#Players who attended Duke account for 2.9 % of NBA players
+#Players who attended North Carolina account for 2.9 % of NBA players
+#Players who attended UCLA  account for 2.5 % of NBA players
+#Players who attended Arizona account for 2.3 % of NBA players
+#Players who attended Kansas account for 2.3 % of NBA players
+#Players who attended Connecticut  account for 1.9 % of NBA players
+#Players who attended Georgia Tech account for 1.6 % of NBA players
+#Players who attended Florida  account for 1.6 % of NBA players
+#Process finished with exit code 0
+#
+##Plot the Top 10 colleges with players in the NBA:
 #college_number_players = (df["college"].value_counts(normalize=True)*100)
 #plt.plot(college_number_players.head(10))
 #plt.ylabel('% players')
@@ -463,8 +505,7 @@ import seaborn as sns
 #To list the top 10 teams which have the largest number of players:
 #df_teams_number = df["team_abbreviation"].value_counts()
 #print((df_teams_number).head(10))
-#
-#Returned
+#Returned:
 #CLE    390
 #TOR    390
 #LAC    389
@@ -488,13 +529,10 @@ import seaborn as sns
 #plt.show()
 #Returned: Graph saved on LAN folder
 #
-########                     U R HERE   ############################################
-#
-#GROUPING and INDEXING
-#Group player and then group by season:
+#Group by player and then group by season:
 #df_grouped = df.groupby(['player_name', 'season'])
 #print(df_grouped.first())
-#Returned
+#Returned:
 #                           Unnamed: 0 team_abbreviation  ...  ts_pct  ast_pct
 #player_name        season                                 ...
 #A.C. Green         1996-97         138               DAL  ...   0.523    0.045
@@ -515,14 +553,20 @@ import seaborn as sns
 ##To group players by selecting a specific team:
 #teams_grp = df.groupby(['team_abbreviation'])
 #print(teams_grp.get_group('BOS'))
-
-#Returned
+#
+#Returned:
 #Unnamed: 0       player_name team_abbreviation  ...  ts_pct  ast_pct   season
 #20             20     Eric Williams               BOS  ...   0.533    0.087  1996-97
 #41             41        Dino Radja               BOS  ...   0.471    0.092  1996-97
 #94             94  Frank Brickowski               BOS  ...   0.512    0.116  1996-97
 #102           102        Greg Minor               BOS  ...   0.519    0.103  1996-97
-#108           108         Dee Brown               BOS
+#108           108         Dee Brown               BOS  ...   0.455    0.202  1996-97
+#...           ...               ...               ...  ...     ...      ...      ...
+#10950       10950        Tacko Fall               BOS  ...   0.713    0.000  2019-20
+#10961       10961   Vincent Poirier               BOS  ...   0.540    0.084  2019-20
+#11007       11007    Tremont Waters               BOS  ...   0.438    0.185  2019-20
+#11076       11076      Kemba Walker               BOS  ...   0.574    0.236  2019-20
+#11124       11124      Marcus Smart               BOS  ...   0.519    0.215  2019-20
 #[367 rows x 22 columns]
 #Process finished with exit code 0
 #
@@ -530,7 +574,7 @@ import seaborn as sns
 # when to each team:
 #teams_college_grp = teams_grp = df.groupby(['team_abbreviation'])
 #print(teams_college_grp['college'].value_counts())
-#Returned
+#Returned:
 #team_abbreviation  college
 #ATL                None              60
 #                   Georgia Tech      14
@@ -546,10 +590,10 @@ import seaborn as sns
 #Name: college, Length: 2946, dtype: int64
 #Process finished with exit code 0
 #
-#To index on team and college by grouping teams by colleges showing the percentage of players from each college:
+#To group teams by colleges showing the percentage of players from each college:
 #teams_college_grp = teams_grp = df.groupby(['team_abbreviation'])
 #print(teams_college_grp['college'].value_counts(normalize=True))
-#Returned
+#Returned:
 #team_abbreviation  college
 #ATL                None              0.156658
 #                   Georgia Tech      0.036554
@@ -565,10 +609,10 @@ import seaborn as sns
 #Name: college, Length: 2946, dtype: float64
 #Process finished with exit code 0
 #
-#To index on college by grouping colleges to show the percentage of players for a specific team:
+#To group colleges to show the percentage of players for a specific team:
 #teams_college_grp = teams_grp = df.groupby(['team_abbreviation'])
 #print(teams_college_grp['college'].value_counts(normalize=True).loc['LAL'])
-#Returned
+#Returned:
 #college
 #None                    0.191375
 #Arizona                 0.045822
@@ -597,15 +641,12 @@ import seaborn as sns
 #Process finished with exit code 0
 #
 #
-#######  NEED TO DOUBLE CHECK THESE FIGURES BELOW ############################
-#
-#
 #Plot comparison of all teams on average - points, rebounds and assists:
 #type = ['pts', 'reb', 'ast']
 #all_teams_pts_reb_ast = df.groupby('team_abbreviation')[type].mean()
 #all_teams_pts_reb_ast.sort_values(by=['pts', 'reb', 'ast'], ascending= [False, True, True], inplace= True)
 #print(all_teams_pts_reb_ast)
-#Returned
+#Returned:
 #                        pts       reb       ast
 # team_abbreviation
 # NOP                8.972951  3.758197  2.050820
@@ -659,7 +700,7 @@ import seaborn as sns
 #plt.show()
 #Returned - LINE GRAPH SAVED ON LAN folder
 #
-##Plot comparison for the top 10 teams with average points per player - SEABORN - YOU R HERE!!!:
+##Plot comparison for the top 10 teams with average points per player:
 #type = ['pts']
 #all_teams_pts = df.groupby('team_abbreviation')[type].mean()
 #all_teams_pts.sort_values(['pts'], ascending= [False], inplace= True)
@@ -669,15 +710,8 @@ import seaborn as sns
 #plt.xticks(rotation=90)
 #plt.plot((all_teams_pts).head(10))
 #plt.show()
-#sns.set(color_codes=True)
-#sns.histplot(all_teams_pts ['pts'], color ='r')
-#plt.show()
-#sns.relplot(x="college", kind= scatter, col= 'reb')
-#plt.show()
+#Returned: Graph saved to LAN folder
 #
-#
-#
-#SORTING and GROUPING
 #To sort Players by tallest to smallest:
 #print(df.sort_values("player_height", ascending= False))
 #
@@ -698,26 +732,26 @@ import seaborn as sns
 #Process finished with exit code 0
 #
 ##To group Players by average height - below works.  Need to insert code to show 'tallest to smallest':
-#type = ['player_height']
-#players_avg_height = (df.groupby("player_name")[type].mean())
-#print(players_avg_height)
-#
-#Returned
-#                    player_height
+#group_player_avg_height= df.groupby('player_name').agg({'player_height': 'mean'})
+#players_ascending_height = group_player_avg_height.sort_values(by=['player_height'], ascending =[False])
+#print(players_ascending_height)
+#                player_height
 #player_name
-#A.C. Green                 205.74
-#A.J. Bramlett              208.28
-#A.J. Guyton                185.42
-#AJ Hammons                 213.36
-#AJ Price                   187.96
-#...                           ...
-#Zion Williamson            198.12
-#Zoran Dragic               195.58
-#Zoran Planinic             200.66
-#Zydrunas Ilgauskas         220.98
-#Zylan Cheatham             195.58
+#Gheorghe Muresan       231.1400
+#Shawn Bradley          228.6000
+#Yao Ming               228.2825
+#Pavel Podkolzin        226.0600
+#Sim Bhullar            226.0600
+#...                         ...
+#Chris Clemons          175.2600
+#Nate Robinson          175.2600
+#Spud Webb              167.6400
+#Earl Boykins           165.1000
+#Muggsy Bogues          160.0200
 #[2235 rows x 1 columns]
 #Process finished with exit code 0
+#
+
 #
 #Players who are above the avg height (>=201cm) and below the avg weight (<=101 lbs), sorted by tallest:
 #height_weight_avg= df[(df['player_height'] >= 201) & (df['player_weight'] <= 101)]
