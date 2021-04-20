@@ -9,8 +9,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-#ANALYZING DATA
-#To check the first 5 rows and also the size of the dataset:
+
+#To check the first 5 rows of the dataset:
 #print(df.head())
 #Returned:
 #Unnamed: 0        player_name team_abbreviation  ...  ts_pct  ast_pct   season
@@ -140,7 +140,8 @@ import seaborn as sns
 #([2278 rows x 22 columns]
 #Process finished with exit code 0
 #
-#To show new dataframe removing duplicates on  Player's name, sort in ascending order:
+#To show new dataframe removing duplicates on  Player's name, sort in ascending order.  For ease of illustration
+#the Top 10 rows were selected:
 #df_drop_dup = df.drop_duplicates(subset= ["player_name", "college"])
 #players_ascending = df_drop_dup.sort_values(by=["player_name"], ascending =[True])
 #print(players_ascending.head(10))
@@ -160,7 +161,8 @@ import seaborn as sns
 #Process finished with exit code 0
 #
 #Using the new dataframe removing duplicates on  Player's name, sort in ascending order,
-#selecting columns 'player_name', 'team_abbreviation', 'college', 'pts':
+#selecting columns 'player_name', 'team_abbreviation', 'college', 'pts'.  For ease of illustration
+#the Top 10 rows were selected:
 #df_drop_dup = df.drop_duplicates(subset= ["player_name", "college"])
 #players_ascending = df_drop_dup.sort_values(by=["player_name"], ascending =[True])
 #players_all_selected = players_ascending[['player_name', 'team_abbreviation', 'college', 'pts']]
@@ -179,7 +181,8 @@ import seaborn as sns
 #10627   Aaron Holiday               IND          UCLA  5.9
 #Process finished with exit code 0
 #
-#To sort players based on points (pts) in decending order:
+#
+#To sort players based on points (pts) in descending order:
 #group_player_avg_pts= df.groupby('player_name').agg({'pts': 'mean', 'reb' : 'mean', 'ast': 'mean'})
 #players_ascending_pts = group_player_avg_pts.sort_values(by=['pts'], ascending =[False])
 #print(players_ascending_pts.head(10))
@@ -609,7 +612,7 @@ import seaborn as sns
 #Name: college, Length: 2946, dtype: float64
 #Process finished with exit code 0
 #
-#To group colleges to show the percentage of players for a specific team:
+#To group colleges to show the percentage of players for a specific team, e.g. LAL:
 #teams_college_grp = teams_grp = df.groupby(['team_abbreviation'])
 #print(teams_college_grp['college'].value_counts(normalize=True).loc['LAL'])
 #Returned:
@@ -641,7 +644,7 @@ import seaborn as sns
 #Process finished with exit code 0
 #
 #
-#Plot comparison of all teams on average - points, rebounds and assists:
+#Comparison of all teams on average - points, rebounds and assists:
 #type = ['pts', 'reb', 'ast']
 #all_teams_pts_reb_ast = df.groupby('team_abbreviation')[type].mean()
 #all_teams_pts_reb_ast.sort_values(by=['pts', 'reb', 'ast'], ascending= [False, True, True], inplace= True)
@@ -686,18 +689,6 @@ import seaborn as sns
 # ATL                7.703655  3.461619  1.688251
 # VAN                7.540278  3.443056  1.881944
 # Process finished with exit code 0
-#
-#Plot comparison for the average points per player for Top 10 Teams:
-#type = ['pts']
-#all_teams_pts = df.groupby('team_abbreviation')[type].mean()
-#all_teams_pts.sort_values(['pts'], ascending= [False], inplace= True)
-#plt.title("Avg points per player for the Top 10 Teams")
-#plt.ylabel('Points Per Game')
-#plt.xlabel('Teams')
-#plt.xticks(rotation=90)
-#plt.plot((all_teams_pts).head(10))
-#plt.show()
-#Returned - LINE GRAPH SAVED ON LAN folder
 #
 ##Plot comparison for the top 10 teams with average points per player:
 #type = ['pts']
@@ -785,7 +776,7 @@ import seaborn as sns
 #plt.show()
 #Returned: Graph saved to LAN folder
 #
-#Players who are above the avg height (>=201cm) and below the avg weight (<=101 lbs), sorted by tallest:
+#Players who are above the avg height (>=201cm) and below the avg weight (<=101 kg), sorted by tallest:
 #group_height_weight= df.groupby('player_name').agg({'player_height': 'mean', 'player_weight' : 'mean'})
 #players_ascending_height_weight = group_height_weight.sort_values(by=['player_height', 'player_weight'],
 #                                                                  ascending =[False, True])
