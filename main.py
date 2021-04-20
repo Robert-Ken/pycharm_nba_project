@@ -730,7 +730,7 @@ import seaborn as sns
 ##[11145 rows x 22 columns]
 #Process finished with exit code 0
 #
-##To group Players by average height - below works.  Need to insert code to show 'tallest to smallest':
+##To group Players by average height:
 #group_player_avg_height= df.groupby('player_name').agg({'player_height': 'mean'})
 #players_ascending_height = group_player_avg_height.sort_values(by=['player_height'], ascending =[False])
 #print(players_ascending_height)
@@ -750,6 +750,16 @@ import seaborn as sns
 #[2235 rows x 1 columns]
 #Process finished with exit code 0
 #
+#Plot All Players Height and show comparison to overall mean:
+#group_player_avg_height= df.groupby('player_name').agg({'player_height': 'mean'})
+#players_height= group_player_avg_height.sort_values(by=['player_height'], ascending =[False])
+#players_avg_height=sns.distplot(players_height['player_height'], color= 'blue', )
+#mean_age = df['player_height'].mean()
+#plt.axvline(mean_age, color= 'red')
+#players_avg_height.set_title('Average Height of NBA Players displaying the mean')
+#plt.show()
+#Returned: Seaborn Distribution plot saved to LAN folder
+#
 #Plot the Top 10 tallest players in the NBA:
 #group_player_avg_height= df.groupby('player_name').agg({'player_height': 'mean'})
 #players_ascending_height = group_player_avg_height.sort_values(by=['player_height'], ascending =[False])
@@ -761,21 +771,10 @@ import seaborn as sns
 #plt.show()
 #Returned: Graph saved to LAN folder
 #
-#Plot NBA players by height:
-#group_player_avg_height= df.groupby('player_name').agg({'player_height': 'mean'})
 #fig, ax = plt.subplots()
-#ax.plot(group_player_avg_height['player_height'])
-#ax.set_xlabel('Players')
-#ax.set_ylabel('Avg Height (cm)')
-#ax.set_title('All NBA Players by Average Height (cm)')
-#plt.show()
-#Returned: Graph saved to LAN folder
-#
-#Plot All NBA Players - Comparison Average Height (cm) to Weight (kg):
 #group_height_weight= df.groupby('player_name').agg({'player_height': 'mean', 'player_weight' : 'mean'})
 #players_ascending_height_weight = group_height_weight.sort_values(by=['player_height', 'player_weight'],
 #                                                                  ascending =[False, True])
-#fig, ax = plt.subplots()
 #ax.plot(group_height_weight.index, group_height_weight['player_height'], color='blue')
 #ax.set_xlabel('Players')
 #ax.set_ylabel('Avg Height (cm)', color= 'blue')
@@ -785,7 +784,6 @@ import seaborn as sns
 #ax.set_title('All NBA Players - Comparison Average Height (cm) to Weight (kg)')
 #plt.show()
 #Returned: Graph saved to LAN folder
-#
 #
 #Players who are above the avg height (>=201cm) and below the avg weight (<=101 lbs), sorted by tallest:
 #group_height_weight= df.groupby('player_name').agg({'player_height': 'mean', 'player_weight' : 'mean'})
@@ -828,8 +826,27 @@ import seaborn as sns
 #Returned: 10 - which is the 10th index in the list
 #print(height.count(223.5))
 #Returned: 2
-
-
+#
+#Plot Players Age and show comparison to overall mean:
+#group_player_avg_age= df.groupby('player_name').agg({'age': 'mean'})
+#players_age = group_player_avg_age.sort_values(by=['age'], ascending =[False])
+#players_avg_age=sns.distplot(players_age['age'], color= 'blue')
+#mean_age = df['age'].mean()
+#plt.axvline(mean_age, color= 'red')
+#players_avg_age.set_title('Average Age of NBA Players displaying the mean')
+#plt.show()
+#Returned: Seaborn Distribution plot saved to LAN folder
+#
+#
+#group_player_avg_age= df.groupby('player_name').agg({'age': 'mean'})
+#players_age = group_player_avg_age.sort_values(by=['age'], ascending =[False])
+#print(players_age.head())
+#age= sns.barplot(x='player_name', y= 'age', data=df)
+#age.fig.suptitle("Players Height and Weight",
+#               y= 1.0)
+#plt.xticks(rotation= 45)
+#plt.show()
+#Returned: Seaborn box plot saved to LAN folder
 
 
 
