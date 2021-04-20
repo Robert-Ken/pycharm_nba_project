@@ -687,7 +687,6 @@ import seaborn as sns
 # VAN                7.540278  3.443056  1.881944
 # Process finished with exit code 0
 #
-#
 #Plot comparison for the average points per player for Top 10 Teams:
 #type = ['pts']
 #all_teams_pts = df.groupby('team_abbreviation')[type].mean()
@@ -751,7 +750,7 @@ import seaborn as sns
 #[2235 rows x 1 columns]
 #Process finished with exit code 0
 #
-#Plot the tallest players in the NBA:
+#Plot the Top 10 tallest players in the NBA:
 #group_player_avg_height= df.groupby('player_name').agg({'player_height': 'mean'})
 #players_ascending_height = group_player_avg_height.sort_values(by=['player_height'], ascending =[False])
 #plt.plot((players_ascending_height).head(10))
@@ -761,6 +760,32 @@ import seaborn as sns
 #plt.xlabel('Players')
 #plt.show()
 #Returned: Graph saved to LAN folder
+#
+#Plot NBA players by height:
+#group_player_avg_height= df.groupby('player_name').agg({'player_height': 'mean'})
+#fig, ax = plt.subplots()
+#ax.plot(group_player_avg_height['player_height'])
+#ax.set_xlabel('Players')
+#ax.set_ylabel('Avg Height (cm)')
+#ax.set_title('All NBA Players by Average Height (cm)')
+#plt.show()
+#Returned: Graph saved to LAN folder
+#
+#Plot All NBA Players - Comparison Average Height (cm) to Weight (kg):
+#group_height_weight= df.groupby('player_name').agg({'player_height': 'mean', 'player_weight' : 'mean'})
+#players_ascending_height_weight = group_height_weight.sort_values(by=['player_height', 'player_weight'],
+#                                                                  ascending =[False, True])
+#fig, ax = plt.subplots()
+#ax.plot(group_height_weight.index, group_height_weight['player_height'], color='blue')
+#ax.set_xlabel('Players')
+#ax.set_ylabel('Avg Height (cm)', color= 'blue')
+#ax2 = ax.twinx()
+#ax2.plot(group_height_weight.index, group_height_weight['player_weight'], color='red')
+#ax2.set_ylabel('Weight (kg)', color= 'red')
+#ax.set_title('All NBA Players - Comparison Average Height (cm) to Weight (kg)')
+#plt.show()
+#Returned: Graph saved to LAN folder
+#
 #
 #Players who are above the avg height (>=201cm) and below the avg weight (<=101 lbs), sorted by tallest:
 #group_height_weight= df.groupby('player_name').agg({'player_height': 'mean', 'player_weight' : 'mean'})
@@ -782,3 +807,31 @@ import seaborn as sns
 #Boban Marjanovic        221.4880     131.541680
 #Process finished with exit code 0
 #
+#Create a Seaborn Box Plot of Players Height and Weight:
+#g= sns.catplot(x='player_height', y= 'player_weight', data=df, kind= 'box')
+#g.fig.suptitle("Players Height and Weight",
+#               y= 1.0)
+#plt.xticks(rotation= 45)
+#plt.show()
+#Returned: Seaborn box plot saved to LAN folder
+#
+#To find the index and count in the lists 'height' and 'weight':
+#height= ['Gheorghe Muresan', 231.1, 'Shawn Bradley', 228.6, 'Yao Ming', 228.3, 'Pavel Podkolzin', 226.1,
+#           'Slavko Vranes', 226.1, 'Tacko Fall', 226.1, 'Sim Bhullar', 226.1, 'Rik Smits', 223.5,
+#           'Priest Lauderdale', 223.5, 'Boban Marjanovic', 221.5]
+#weight= ['Gheorghe Muresan', 137.4, 'Shawn Bradley', 119.8, 'Yao Ming', 139.8, 'Pavel Podkolzin', 117.9,
+#           'Slavko Vranes', 124.7, 'Tacko Fall', 141.1, 'Sim Bhullar', 163.3, 'Rik Smits', 120.2,
+#           'Priest Lauderdale', 151.5, 'Boban Marjanovic', 131.5]
+#print(height.index('Yao Ming'))
+#Returned: 4 - which is the 4th index in the list
+#print(weight.index('Tacko Fall'))
+#Returned: 10 - which is the 10th index in the list
+#print(height.count(223.5))
+#Returned: 2
+
+
+
+
+
+
+
